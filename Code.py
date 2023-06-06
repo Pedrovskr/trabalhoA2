@@ -18,6 +18,10 @@ def obterDespesasDeputado(idDeputado):
 
 st.title('Lista de Deputados em Exercício')
 
+idLegislatura = st.slider('Escolha de qual legislatura você quer a lista de deputados', 50, 57, 57)
+
+df = baixaDeputados(idLegislatura)
+
 
 st.header('Lista de deputados')
 st.write(df)
