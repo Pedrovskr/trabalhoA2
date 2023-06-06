@@ -37,7 +37,7 @@ df_ = df[(df['siglaUf'] == state) & (df['siglaPartido'] == party)]
 st.markdown('---')
 
 if df_.empty:
-    st.subheader(':no_entry_sign: Sem deputados nesse estado filiados a esse partido!')
+    st.subheader('Não há deputados nesse estado filiados a esse partido!')
 else:
     despesas_totais_partido = 0
     for _, row in df_.iterrows():
@@ -52,6 +52,6 @@ else:
             st.write('Despesas:')
             despesas_df = get_despesas_deputados(row['id'])
             st.write(despesas_df)
-            despesas_totais_partido = despesas_df['valorLiquido'].sum()
-            st.markdown(f'<h2 style="color:red;">Total de Despesas do Deputado: R${despesas_totais_partido:.2f}</h2>', unsafe_allow_html=True)
-            despesas_totais_partido += despesas_totais_deputados
+            despesas_totais_deputado = despesas_df['valorLiquido'].sum()
+            st.markdown(f'<h2 style="color:red;">Total de Despesas do Deputado: R${despesas_totais_deputado:.2f}</h2>', unsafe_allow_html=True)
+            despesas_totais_partido += despesas_totais_deputado
