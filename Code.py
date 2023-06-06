@@ -18,12 +18,13 @@ def get_despesas_deputados(id_deputados):
 
 st.title('Lista de Deputados em Exercício')
 
-id_legislatura = 57  # Specify the legislature ID directly
+id_legislatura = 57  
 df = get_deputados(id_legislatura)
 
-with st.beta_expander('Lista de deputados'):
-      st.write(df)
-      st.download_button('Baixar lista de deputados', data=df.to_csv(), file_name='deputados.csv', mime='text/csv')
+with st.expander('Lista de deputados'):
+    st.write(df)
+    st.download_button('Baixar lista de deputados', data=df.to_csv(), file_name='deputados.csv', mime='text/csv')
+
 
 st.header('Gráficos')
 st.subheader('Número de deputados por partido')
