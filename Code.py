@@ -18,7 +18,7 @@ def get_deputy_expenses(deputy_id):
 
 st.title('Lista de Deputados em Exercício')
 
-legislature_id = st.slider('Escolha de qual legislatura você quer a lista de deputados', 50, 57, 57)
+legislature_id = 57  # Specify the legislature ID directly
 df = get_deputies(legislature_id)
 
 st.header('Lista de deputados')
