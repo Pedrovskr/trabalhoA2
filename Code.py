@@ -53,5 +53,5 @@ else:
             despesas_df = get_despesas_deputados(row['id'])
             st.write(despesas_df)
             despesas_totais_partido = despesas_df['valorLiquido'].sum()
-            st.markdown(f'<h2 style="color:red;">Total de Despesas do Deputado: R${total_deputy_expenses:.2f}</h2>', unsafe_allow_html=True)
+            st.markdown(f'<h2 style="color:red;">Total de Despesas do Deputado: R${despesas_totais_deputados:.2f}</h2>', unsafe_allow_html=True)
             despesas_totais_partido += despesas_totais_deputados
