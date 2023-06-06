@@ -27,10 +27,6 @@ with st.expander('Lista de deputados'):
 
 
 st.header('Gráficos')
-st.subheader('Número de deputados por partido')
-st.bar_chart(df['siglaPartido'].value_counts())
-st.subheader('Número de deputados por estado')
-st.bar_chart(df['siglaUf'].value_counts())
 
 st.header('Lista de deputados por estado')
 col1, col2 = st.columns(2)
