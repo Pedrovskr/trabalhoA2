@@ -2,24 +2,24 @@ import streamlit as st
 import pandas as pd
 import requests
 
-def get_deputies(legislature_id):
-    url = f'https://dadosabertos.camara.leg.br/api/v2/deputados?idLegislatura={legislature_id}'
+def get_deputados(id_legislatura):
+    url = f'https://dadosabertos.camara.leg.br/api/v2/deputados?idLegislatura={id_legislatura}'
     response = requests.get(url)
-    deputies = response.json()['dados']
-    df = pd.DataFrame(deputies)
+    deputados = response.json()['dados']
+    df = pd.DataFrame(deputados)
     return df
 
-def get_deputy_expenses(deputy_id):
-    url = f'https://dadosabertos.camara.leg.br/api/v2/deputados/{deputy_id}/despesas'
+def get_despesas_deputados(id_deputados):
+    url = f'https://dadosabertos.camara.leg.br/api/v2/deputados/{id_deputados}/despesas'
     response = requests.get(url)
-    expenses = response.json()['dados']
-    df = pd.DataFrame(expenses)
+    despesas = response.json()['dados']
+    df = pd.DataFrame(despesas)
     return df
 
 st.title('Lista de Deputados em Exercício')
 
-legislature_id = 57  # Specify the legislature ID directly
-df = get_deputies(legislature_id)
+id_legislatura = 57  # Specify the legislature ID directly
+df = get_deputados(id_legislatura)
 
 with st.beta_expander('Lista de deputados'):
     st.write(df)
@@ -35,14 +35,14 @@ st.header('Lista de deputados por estado')
 col1, col2 = st.columns(2)
 state = col1.selectbox('Escolha um estado', sorted(df['siglaUf'].unique()), index=25)
 party = col2.selectbox('Escolha um partido', sorted(df['siglaPartido'].unique()))
-df_filtered = df[(df['siglaUf'] == state) & (df['siglaPartido'] == party)]
+df_ = df[(df['siglaUf'] == state) & (df['siglaPartido'] == party)]
 st.markdown('---')
 
-if df_filtered.empty:
-    st.subheader(':no_entry_sign: Sem deputados nesse estado filiados a esse partido! :crying_cat_face:')
+if df_.empty:
+    st.subheader(':no_entry_sign: Sem deputados nesse estado filiados a esse partido!')
 else:
-    total_party_expenses = 0
-    for _, row in df_filtered.iterrows():
+    despesas_totais_partido = 0
+    for _, row in df_.iterrows():
         with st.expander(row['nome']):
             st.image(row['urlFoto'], width=130)
             st.write('Nome:', row['nome'])
@@ -52,8 +52,8 @@ else:
             st.write('Email:', row['email'])
             st.write('---')
             st.write('Despesas:')
-            expenses_df = get_deputy_expenses(row['id'])
-            st.write(expenses_df)
-            total_deputy_expenses = expenses_df['valorLiquido'].sum()
-            st.markdown(f'<h2 style="color:red;">Total de Despesas do Deputado: R${total_deputy_expenses:.2f}</h2>', unsafe_allow_html=True)
-            total_party_expenses += total_deputy_expenses
+            despesas_df = get_despesas_deputados(row['id'])
+            st.write(despesas_df)
+            despesas_totais_partido = despesas_df['valorLiquido'].sum()
+            st.markdown(f'<h2 style="color:red;">Total de Despesas do Deputado: R${despesas_totais_deputados:.2f}</h2>', unsafe_allow_html=True)
+            despesas_totais_partido += despesas_totais_deputados
