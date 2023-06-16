@@ -31,13 +31,9 @@ st.subheader('Número de deputados por estado')
 st.bar_chart(df['siglaUf'].value_counts())
 
 col1, col2 = st.columns(2)
-estado = col1.selectbox('Escolha um estado', sorted(df['siglaUf'].unique()), index=25)
-partido = col2.selectbox('Escolha um partido', sorted(df['siglaPartido'].unique()))
-df_ = df[(df['siglaUf'] == estado) & (df['siglaPartido'] == partido)]
-sort_column = 'valorDocumento'
-ascending = False
-df.sort_values(by=['valorDocumento'])
-
+state = col1.selectbox('Escolha um estado', sorted(df['siglaUf'].unique()), index=25)
+party = col2.selectbox('Escolha um partido', sorted(df['siglaPartido'].unique()))
+df_ = df[(df['siglaUf'] == state) & (df['siglaPartido'] == party)]
 st.markdown('---')
 
 if df_.empty:
