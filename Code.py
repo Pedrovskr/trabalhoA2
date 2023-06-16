@@ -31,9 +31,9 @@ st.subheader('Número de deputados por estado')
 st.bar_chart(df['siglaUf'].value_counts())
 
 col1, col2 = st.columns(2)
-state = col1.selectbox('Escolha um estado', sorted(df['siglaUf'].unique()), index=25)
-party = col2.selectbox('Escolha um partido', sorted(df['siglaPartido'].unique()))
-df_ = df[(df['siglaUf'] == state) & (df['siglaPartido'] == party)]
+estado = col1.selectbox('Escolha um estado', sorted(df['siglaUf'].unique()), index=25)
+partido = col2.selectbox('Escolha um partido', sorted(df['siglaPartido'].unique()))
+df_ = df[(df['siglaUf'] == estado) & (df['siglaPartido'] == partido)]
 st.markdown('---')
 
 if df_.empty:
@@ -53,7 +53,7 @@ else:
             despesas_df = get_despesas_deputados(row['id'])
             st.write(despesas_df)
             despesas_totais_deputado = despesas_df['valorLiquido'].sum()
-            st.markdown(f'<h2 style="color:red;">Total de Despesas do Deputado: R${despesas_totais_deputado:.2f}</h2>', unsafe_allow_html=True)
+            st.markdown('Total de Despesas do Deputado: R${despesas_totais_deputado:.2f}</h2>', unsafe_allow_html=True)
             despesas_totais_partido += despesas_totais_deputado
             
             st.markdown('---')
