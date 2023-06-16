@@ -51,6 +51,9 @@ else:
             st.write('---')
             st.write('Despesas:')
             despesas_df = get_despesas_deputados(row['id']) 
+            st.write(despesas_df.columns)
+            valorDocumento = [col for col in despesas_df.columns if 'id' in col.lower()][0]
+            despesas_df = despesas_df.groupby(column_name).sum().sort_values('valorLiquido', ascending=False).reset_index()
             st.write(despesas_df)
             despesas_totais_deputado = despesas_df['valorLiquido'].sum()
             st.markdown(f'<h2 style="color:red;">Total de Despesas do Deputado: R${despesas_totais_deputado:.2f}</h2>', unsafe_allow_html=True)
