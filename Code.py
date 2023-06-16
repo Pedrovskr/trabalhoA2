@@ -36,7 +36,7 @@ partido = col2.selectbox('Escolha um partido', sorted(df['siglaPartido'].unique(
 df_ = df[(df['siglaUf'] == estado) & (df['siglaPartido'] == partido)]
 sort_column = 'valorDocumento'
 ascending = False
-df_ = df_.sort_values(sort_column, ascending=ascending)
+df.sort_values(by=['valorDocumento'])
 
 st.markdown('---')
 
