@@ -33,7 +33,7 @@ st.bar_chart(df['siglaUf'].value_counts())
 col1, col2 = st.columns(2)
 state = col1.selectbox('Escolha um estado', sorted(df['siglaUf'].unique()), index=25)
 party = col2.selectbox('Escolha um partido', sorted(df['siglaPartido'].unique()))
-df_ = df[(df['siglaUf'] == state) & (df['siglaPartido'] == party).sort_values("Despesas:")]
+df_ = df[(df['siglaUf'] == state) & (df['siglaPartido'] == party).sort_values("despesas_df")]
 st.markdown('---')
 
 if df_.empty:
