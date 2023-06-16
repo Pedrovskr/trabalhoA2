@@ -16,7 +16,7 @@ def get_despesas_deputados(id_deputados):
     df = pd.DataFrame(despesas)
     return df
 
-st.title('Lista de Deputados em Exercício')
+st.title('Saiba quanto os Deputados estão gastando - Fiscalizador de Despesas')
 
 id_legislatura = 57  
 df = get_deputados(id_legislatura)
