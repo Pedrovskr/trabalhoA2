@@ -51,6 +51,7 @@ else:
             st.write('---')
             st.write('Despesas:')
             despesas_df = get_despesas_deputados(row['id'])
+            st.write(despesas_df.columns)
             despesas_df = despesas_df.groupby('idDeputado').sum().sort_values('valorLiquido', ascending=False).reset_index() 
             st.write(despesas_df)
             despesas_totais_deputado = despesas_df['valorLiquido'].sum()
