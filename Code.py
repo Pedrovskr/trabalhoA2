@@ -21,23 +21,22 @@ st.title('Saiba quanto os Deputados estão gastando - Fiscalizador de Despesas')
 id_legislatura = 57  
 df = get_deputados(id_legislatura)
 
-with st.expander('Lista de deputados'):
+with st.expander('Lista de Deputados'):
     st.write(df)
-    st.download_button('Baixar lista de deputados', data=df.to_csv(), file_name='deputados.csv', mime='text/csv')
+    st.download_button('Baixar esta lista', data=df.to_csv(), file_name='deputados.csv', mime='text/csv')
 
 
-st.header('Gráficos')
-st.subheader('Número de deputados por estado')
+st.header('Gráfico - Numero de Deputados por Estado')
 st.bar_chart(df['siglaUf'].value_counts())
 
-col1, col2 = st.columns(2)
-estado = col1.selectbox('Escolha um estado', sorted(df['siglaUf'].unique()), index=25)
-partido = col2.selectbox('Escolha um partido', sorted(df['siglaPartido'].unique()))
+coluna1, coluna2 = st.columns(2)
+estado = coluna1.selectbox('Escolha um estado', sorted(df['siglaUf'].unique()), index=25)
+partido = coluna2.selectbox('Escolha um partido', sorted(df['siglaPartido'].unique()))
 df_ = df[(df['siglaUf'] == estado) & (df['siglaPartido'] == partido)]
 st.markdown('---')
 
 if df_.empty:
-    st.subheader('Não há deputados nesse estado filiados a esse partido!')
+    st.subheader('Não há deputados disponiveis!')
 else:
     despesas_totais_partido = 0
     for _, row in df_.iterrows():
