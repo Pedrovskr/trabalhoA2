@@ -16,7 +16,7 @@ def get_despesas_deputados(id_deputados):
     df = pd.DataFrame(despesas)
     return df
 
-st.title('Cadê meu dinheiro? - Fiscalizador de Despesas')
+st.title('Cadê Meu Dinheiro? - Fiscalizador de Despesas')
 
 id_legislatura = 57  
 df = get_deputados(id_legislatura)
@@ -36,7 +36,7 @@ df_ = df[(df['siglaUf'] == estado) & (df['siglaPartido'] == partido)]
 st.markdown('---')
 
 if df_.empty:
-    st.subheader('Não há deputados disponiveis!')
+    st.subheader('Não Há Deputados Disponiveis!')
 else:
     despesas_totais_partido = 0
     for _, row in df_.iterrows():
