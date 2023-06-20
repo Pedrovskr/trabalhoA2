@@ -58,6 +58,7 @@ else:
             despesas_totais_deputado = despesas_df['valorLiquido'].sum()
             st.markdown(f'<h2>Total de Despesas do Deputado: R${despesas_totais_deputado:.2f}</h2>', unsafe_allow_html=True)
             despesas_totais_partido += despesas_totais_deputado
+            st.subheader('*Apenas gastos pessoais, gabinete e assessores não incluídos')
             
             st.markdown('---')
     st.subheader('Total de Despesas dos Integrantes do Partido')
