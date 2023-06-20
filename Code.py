@@ -16,7 +16,7 @@ def get_despesas_deputados(id_deputados):
     df = pd.DataFrame(despesas)
     return df
 
-st.title('Saiba quanto os Deputados estão gastando - Fiscalizador de Despesas')
+st.title('Cadê meu dinheiro? - Fiscalizador de Despesas')
 
 id_legislatura = 57  
 df = get_deputados(id_legislatura)
@@ -56,5 +56,5 @@ else:
             despesas_totais_partido += despesas_totais_deputado
             
             st.markdown('---')
-    st.subheader('Total de Despesas do Partido')
+    st.subheader('Total de Despesas dos Integrantes do Partido')
     st.markdown(f'<h2>R${despesas_totais_partido:.2f}</h2>', unsafe_allow_html=True)
