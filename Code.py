@@ -55,7 +55,7 @@ else:
             if valorDocumento:
               valorDocumento = valorDocumento[0]
             else:
-            valorDocumento = 'Não encontrado'
+              valorDocumento = 'Não encontrado'
             despesas_df = despesas_df.groupby(valorDocumento).sum().reset_index()
             despesas_df = despesas_df.sort_values('valorDocumento', ascending=False)
             st.write(despesas_df)
