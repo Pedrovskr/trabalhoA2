@@ -51,7 +51,11 @@ else:
             st.write('---')
             st.write('Despesas:')
             despesas_df = get_despesas_deputados(row['id'])
-            valorDocumento = [col for col in despesas_df.columns if 'id' in col.lower()][0]
+           valorDocumento = [col for col in despesas_df.columns if 'id' in col.lower()]
+        if valorDocumento:
+            valorDocumento = valorDocumento[0]
+        else:
+            valorDocumento = 'Não encontrado'
             despesas_df = despesas_df.groupby(valorDocumento).sum().reset_index()
             despesas_df = despesas_df.sort_values('valorDocumento', ascending=False)
             st.write(despesas_df)
