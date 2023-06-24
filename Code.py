@@ -52,9 +52,9 @@ else:
             st.write('Despesas:')
             despesas_df = get_despesas_deputados(row['id'])
             valorDocumento = [col for col in despesas_df.columns if 'id' in col.lower()]
-           if valorDocumento in despesas_df.columns:
+            if valorDocumento in despesas_df.columns:
                 despesas_df = despesas_df.groupby(valorDocumento).sum().reset_index()
-           else:
+            else:
                 st.error('Column not found in despesas_df DataFrame')
                 st.stop()  
 
